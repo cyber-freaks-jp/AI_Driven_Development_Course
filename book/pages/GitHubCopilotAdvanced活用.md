@@ -4,7 +4,7 @@
 
 ### ツールの特徴
 
-GitHubCopilotAdvanced は以下のような特徴を持つ AI 開発ツールです：
+GitHubCopilotAdvanced は以下のような特徴を持つ AI開発ツールです：
 
 - 高度なコード生成
 - コンテキスト理解
