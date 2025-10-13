@@ -8,16 +8,21 @@
 
 ```mermaid
 graph TD
-    A[AI<br/>人工知能] --> B[機械学習]
-    B --> C[ディープラーニング]
-    C --> D[生成AI]
-    D --> E[LLM<br/>大規模言語モデル]
+    subgraph AI["AI (人工知能)"]
+        subgraph ML["機械学習"]
+            subgraph DL["ディープラーニング"]
+                subgraph GenAI["生成AI"]
+                    LLM["LLM<br/>(大規模言語モデル)"]
+                end
+            end
+        end
+    end
 
-    style A fill:#e1f5ff
-    style B fill:#b3e5ff
-    style C fill:#80d4ff
-    style D fill:#4dc3ff
-    style E fill:#1aa3ff
+    style AI fill:#e1f5ff
+    style ML fill:#b3e5ff
+    style DL fill:#80d4ff
+    style GenAI fill:#4dc3ff
+    style LLM fill:#1aa3ff
 ```
 
 この図が示すように、各技術は階層構造になっています。つまり、外側の技術が内側の技術を含む関係です。
