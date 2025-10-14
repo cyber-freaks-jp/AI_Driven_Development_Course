@@ -213,6 +213,26 @@ LLM（Large Language Model：大規模言語モデル）は、生成AIの中で�
 - コードの生成
 - バグの発見と修正
 
+## 生成AIとLLMの違い
+
+### LLMは生成AIの一種
+
+LLMは、生成AIの中で「テキスト（言語）」に特化したものです。
+
+```mermaid
+graph TD
+    A[生成AI] --> B[テキスト生成AI = LLM]
+    A --> C[画像生成AI]
+    A --> D[音声生成AI]
+    A --> E[動画生成AI]
+
+    B --> B1[ChatGPT<br/>Claude<br/>Gemini]
+    C --> C1[Stable Diffusion<br/>Midjourney]
+    D --> D1[音声合成AI<br/>音楽生成AI]
+
+    style B fill:#1aa3ff
+    style B1 fill:#1aa3ff
+```
 
 ## まとめ
 
