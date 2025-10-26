@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(if [ -f \"/Users/tanaka/dev/sandbox/book/pages/シンプルなコード生成から始めよう.md\" ])",
+      "Bash(then)",
+      "Bash(fi)",
+      "Bash(if [ -f \"/Users/tanaka/dev/sandbox/book/pages/環境の自動生成.md\" ])",
+      "Bash(if [ -f \"/Users/tanaka/dev/sandbox/book/pages/AI駆動開発のメリットと課題.md\" ])",
+      "Bash(then echo \"exists\")",
+      "Bash(git mv:*)",
+      "Bash(git checkout:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
