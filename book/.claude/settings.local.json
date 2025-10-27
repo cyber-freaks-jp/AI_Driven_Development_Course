@@ -8,7 +8,8 @@
       "Bash(if [ -f \"/Users/tanaka/dev/sandbox/book/pages/AI駆動開発のメリットと課題.md\" ])",
       "Bash(then echo \"exists\")",
       "Bash(git mv:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []
