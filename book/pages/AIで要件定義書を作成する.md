@@ -81,26 +81,40 @@ AI駆動開発では、**AIで各フェーズをシームレスにつなぐの�
 
 #### マークダウンで図を描く（Mermaid）
 
-マークダウンには、**Mermaid**という図を描く機能があります（後述）。
+マークダウンには、**Mermaid**という図を描く機能があります。
 
+**Mermaid**は、テキストで図を描ける記法です。例えば、以下のコードを書くと：
 
-### ExcelやWordとの比較
+````
+```mermaid
+graph TD
+    A[果物] --> B[りんご]
+    A --> C[バナナ]
+```
+````
 
-| 比較項目 | Excel/Word | マークダウン |
-|---------|-----------|-------------|
-| AI認識性 | △ 低い（誤認識が多い） | ◎ 完璧（100%正確） |
-| バージョン管理 | × 不可能（Gitで差分が見えない） | ◎ 完璧（差分が一目瞭然） |
-| 検索性 | △ 低い（AIが横断検索しにくい） | ◎ 高い（AIが簡単に検索） |
-| 編集の手軽さ | ○ 簡単 | ◎ 非常に簡単 |
-| 図の管理 | ○ 可能（画像） | ◎ コードで管理（Mermaid） |
-| CursorやClaude Codeとの相性 | × 悪い | ◎ 抜群 |
-| 複数人での並行作業 | △ 困難 | ◎ 簡単 |
+このような図が自動生成されます：
 
-**結論：AI駆動開発では、マークダウン形式が圧倒的に有利**
+```mermaid
+graph TD
+    A[果物] --> B[りんご]
+    A --> C[バナナ]
+```
 
-## 要件定義書の基本構成
+#### 一部Excelと併用しても良い
+ただし場合によっては、マークダウンよりもExcelの方が便利な時もあります。そういう時は部分的にExcelを併用するのもオススメです。
 
-マークダウンで書く要件定義書は、以下の構成がおすすめです：
+なお、Excelをマークダウンに変換したい時は、ExcelをHTMLに変換し、HTMLをマークダウンに変換するのが最も変換成功率が高いです。
+
+#### Gitにコミットしよう
+
+マークダウンでドキュメントを作成したら、今後はそれをAIに読み込ませながらAI駆動開発を進めるので、ソースコードと同じGitリポジトリに、マークダウン一式もコミットしましょう。フォルダはdocs/フォルダなど、どこでも構いません
+
+**結論：AI駆動開発では、マークダウンでドキュメント管理して、Gitにコミットするのがオススメ**
+
+## マークダウンで要件定義書の作り方
+
+例として、マークダウンで以下のような目次の要件定義書を作っていきます
 
 ```markdown
 # 要件定義書：[プロジェクト名]
@@ -317,277 +331,6 @@ git commit -m "feat: タスク管理アプリの要件定義書を作成"
 ```
 
 このように**分割して指示**することで、AIの精度が上がり、修正の手間が減ります。
-
-## Mermaidで図を追加する
-
-要件定義書や設計書には、システムの構成やフローを視覚的に表現する図が不可欠です。しかし、従来の方法（PowerPoint、Drawioなど）には問題があります。
-
-### 従来の図作成の問題点
-
-- **バイナリファイル**：AIが認識できない
-- **バージョン管理が困難**：Gitで差分を確認できない
-- **修正が面倒**：図を手動で更新する必要がある
-- **一貫性の欠如**：誰が編集するかで品質がバラバラ
-
-### Mermaidとは
-
-**Mermaid**は、テキストベースで図を描ける記法です。マークダウン内にコードとして記述でき、自動的に図が生成されます。
-
-**Mermaidの利点：**
-
-- ✅ テキストファイル：AIが完璧に認識できる
-- ✅ Gitで管理可能：差分が一目瞭然
-- ✅ 自動生成可能：AIに図を描かせられる
-- ✅ 修正が簡単：テキストを編集するだけ
-
-### Mermaidで描ける図の種類
-
-#### 1. フローチャート（flowchart）
-
-システムのフローを表現します。
-
-```markdown
-\`\`\`mermaid
-flowchart TD
-    A[ユーザー] --> B{ログイン済み?}
-    B -->|はい| C[ダッシュボード表示]
-    B -->|いいえ| D[ログイン画面表示]
-    D --> E[認証処理]
-    E --> F{認証成功?}
-    F -->|はい| C
-    F -->|いいえ| G[エラーメッセージ表示]
-    G --> D
-\`\`\`
-```
-
-#### 2. シーケンス図（sequenceDiagram）
-
-システム間のやりとりを時系列で表現します。
-
-```markdown
-\`\`\`mermaid
-sequenceDiagram
-    participant U as ユーザー
-    participant F as フロントエンド
-    participant B as バックエンド
-    participant D as データベース
-
-    U->>F: ログインボタンをクリック
-    F->>B: POST /api/login
-    B->>D: ユーザー情報を検索
-    D-->>B: ユーザーデータ
-    B->>B: パスワード検証
-    B-->>F: JWTトークン
-    F-->>U: ダッシュボード表示
-\`\`\`
-```
-
-#### 3. ER図（erDiagram）
-
-データベース設計を表現します。
-
-```markdown
-\`\`\`mermaid
-erDiagram
-    USER ||--o{ TASK : creates
-    USER {
-        int id PK
-        string email
-        string password
-        datetime created_at
-    }
-    TASK {
-        int id PK
-        int user_id FK
-        string title
-        string description
-        int priority
-        datetime deadline
-        datetime created_at
-    }
-    TASK ||--o{ COMMENT : has
-    COMMENT {
-        int id PK
-        int task_id FK
-        int user_id FK
-        string content
-        datetime created_at
-    }
-\`\`\`
-```
-
-#### 4. クラス図（classDiagram）
-
-オブジェクト指向設計を表現します。
-
-```markdown
-\`\`\`mermaid
-classDiagram
-    class User {
-        +int id
-        +string email
-        +string password
-        +login()
-        +logout()
-    }
-    class Task {
-        +int id
-        +string title
-        +string description
-        +int priority
-        +create()
-        +update()
-        +delete()
-    }
-    class TaskService {
-        +createTask()
-        +updateTask()
-        +deleteTask()
-        +getTasks()
-    }
-    User "1" --> "*" Task
-    TaskService --> Task
-\`\`\`
-```
-
-#### 5. ガントチャート（gantt）
-
-プロジェクトのスケジュールを表現します。
-
-```markdown
-\`\`\`mermaid
-gantt
-    title タスク管理アプリ開発スケジュール
-    dateFormat  YYYY-MM-DD
-    section 要件定義
-    要件定義書作成           :a1, 2025-01-01, 7d
-    レビュー                :a2, after a1, 3d
-    section 設計
-    データベース設計         :b1, after a2, 5d
-    API設計                 :b2, after a2, 5d
-    section 実装
-    バックエンド実装         :c1, after b1, 14d
-    フロントエンド実装       :c2, after b2, 14d
-    section テスト
-    ユニットテスト           :d1, after c1, 7d
-    統合テスト              :d2, after d1, 7d
-\`\`\`
-```
-
-### AIにMermaid図を描かせる
-
-要件定義書を作成する際に、AIにMermaid図も一緒に作ってもらえます。
-
-#### 例1：フローチャートを追加
-
-```
-プロンプト：
-「要件定義書.mdの「2.1 ユーザー登録・ログイン機能」セクションに、
-ログインフローのMermaidフローチャートを追加してください。」
-```
-
-AIが自動的に以下のようなコードを生成：
-
-```markdown
-### ログインフロー
-
-\`\`\`mermaid
-flowchart TD
-    Start[ユーザーがログインページにアクセス] --> Input[メールアドレスとパスワードを入力]
-    Input --> Submit[ログインボタンをクリック]
-    Submit --> Validate{入力検証}
-    Validate -->|失敗| Error1[エラーメッセージ表示]
-    Error1 --> Input
-    Validate -->|成功| Auth{認証処理}
-    Auth -->|失敗| Error2[認証エラー表示]
-    Error2 --> Input
-    Auth -->|成功| Token[JWTトークン発行]
-    Token --> Dashboard[ダッシュボードにリダイレクト]
-\`\`\`
-```
-
-#### 例2：シーケンス図を追加
-
-```
-プロンプト：
-「要件定義書.mdの「2.2 タスク作成機能」セクションに、
-タスク作成のシーケンス図をMermaid形式で追加してください。
-フロントエンド、バックエンド、データベースの3層構成で記述してください。」
-```
-
-### Mermaidの修正もAIに任せる
-
-既存のMermaid図を修正する場合も、AIに指示できます。
-
-```
-プロンプト例：
-「このMermaidフローチャートに、
-「パスワードリセット」フローを追加してください。」
-```
-
-AIが既存のコードを理解し、適切に修正してくれます。
-
-### Gitで差分管理
-
-Mermaidはテキストなので、Gitで変更履歴が追跡できます：
-
-```diff
- \`\`\`mermaid
- flowchart TD
-     A[ユーザー] --> B{ログイン済み?}
-     B -->|はい| C[ダッシュボード表示]
-     B -->|いいえ| D[ログイン画面表示]
-+    D --> E[2要素認証]
-+    E --> F{認証成功?}
--    D --> E[認証処理]
--    E --> F{認証成功?}
- \`\`\`
-```
-
-従来のPowerPointやDrawioでは不可能だった差分管理が、Mermaidなら簡単にできます。
-
-### CursorでMermaidをプレビュー
-
-Cursorはデフォルトでのermaidをサポートしています。
-
-1. マークダウンファイルを開く
-2. `Cmd+Shift+V`でプレビュー表示
-3. Mermaid図が自動的に描画される
-
-### PowerPoint/Drawioとの比較
-
-| 比較項目 | PowerPoint/Drawio | Mermaid |
-|---------|------------------|---------|
-| ファイル形式 | バイナリ | テキスト |
-| AI認識性 | △ 低い | ◎ 完璧 |
-| Git管理 | × 不可能 | ◎ 完璧 |
-| 修正の手軽さ | △ 手動で編集 | ◎ テキスト編集 |
-| AI自動生成 | × 不可能 | ◎ 可能 |
-| プレビュー | ○ アプリ必要 | ◎ エディタで可能 |
-
-## 既存ドキュメントからの変換
-
-既存のExcelやWord形式の要件定義書がある場合：
-
-### 方法1：手動でコピペ＋整形
-
-1. ExcelやWordの内容をコピー
-2. Cursorに新規ファイル作成
-3. `Cmd+K`で「この内容をマークダウン形式に整形してください」
-
-### 方法2：AIで自動変換（推奨）
-
-1. ExcelやWordファイルをプロジェクトに配置
-2. Composerで以下を実行：
-
-```
-プロンプト：
-「@要件定義書.xlsx の内容を読み取り、
-マークダウン形式の要件定義書.mdに変換してください。
-見出しレベルを適切に設定し、箇条書きを活用してください。」
-```
-
-**所要時間：数秒〜数分**
 
 ## まとめ
 
