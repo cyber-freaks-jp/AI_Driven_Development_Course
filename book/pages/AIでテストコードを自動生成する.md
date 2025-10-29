@@ -17,9 +17,6 @@ AIに質の高いテストコードを生成させるには、**3つの情報源
 ## AIでテストを生成してみよう
 
 例として、ECサイトの決済APIに対するテストコードを生成してみます。
-
-### 基本的なユニットテスト生成
-
 実装コード、設計書、要件定義書を参照させて、ユニットテストを生成します。
 
 ```
@@ -75,23 +72,75 @@ describe('POST /api/payment/create-intent', () => {
 });
 ```
 
-### カバレッジ確認と追加テスト生成
+### AIにテストを実行させて自動修正させる
 
-テストを実行してカバレッジを確認し、不足している部分のテストを追加します。
+テストコードを生成したら、AIにテストを実行させます。**テストが失敗した場合、AIが自動でバグを修正**してくれます。
 
 ```
 プロンプト：
-「@backend/src/routes/payment.ts のテストカバレッジが65%です。
-カバレッジを90%以上にするための追加テストを作成してください。
+「backend/tests/routes/payment.test.ts のテストを実行してください。
 
-特に、以下の関数のテストが不足しています：
-- 返金処理 (POST /api/payment/:id/refund)
-- 決済履歴取得 (GET /api/payment/history)
+テストが失敗した場合は、エラー内容を確認して、
+実装コードまたはテストコードを修正してください。
 
-既存のテストファイル @backend/tests/routes/payment.test.ts に追加してください。」
+すべてのテストが成功するまで、実行と修正を繰り返してください。」
 ```
 
-AIが不足しているテストケースを追加してくれます。
+
+#### よくあるテスト失敗パターンと自動修正例
+
+**パターン1：モックの設定ミス**
+
+```
+エラー：TypeError: stripe.paymentIntents.create is not a function
+```
+
+AIの自動修正：
+```typescript
+// テストファイルのモック設定を修正
+jest.mock('../../src/lib/stripe', () => ({
+  stripe: {
+    paymentIntents: {
+      create: jest.fn().mockResolvedValue({
+        id: 'pi_test123',
+        client_secret: 'secret_test',
+      }),
+    },
+  },
+}));
+```
+
+**パターン2：実装コードのバグ**
+
+```
+エラー：Expected status 400, received 500
+バリデーションエラーが500エラーになっている
+```
+
+AIの自動修正：
+```typescript
+// backend/src/routes/payment.ts を修正
+if (amount < 100) {
+  return res.status(400).json({
+    error: '最低金額は100円です'
+  });
+}
+```
+
+**パターン3：テストケースの誤り**
+
+```
+エラー：Expected 'jpy', received 'JPY'
+通貨コードの大文字小文字が一致しない
+```
+
+AIの自動修正：
+```typescript
+// テストの期待値を修正
+expect(response.body.currency).toBe('JPY');
+```
+
+このように、AIがエラーの原因を特定し、実装コードとテストコードのどちらを修正すべきか判断して、自動で対応してくれます。
 
 ## テストの階層とそれぞれのアプローチ
 
