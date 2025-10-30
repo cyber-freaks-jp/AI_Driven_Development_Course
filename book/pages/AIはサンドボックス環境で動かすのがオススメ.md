@@ -3,22 +3,13 @@
 **AIはサンドボックス環境で動かすことを強くお勧めします。その理由は2つあります：**
 
 1. **セキュリティリスクの回避**：情報漏洩やコード破壊といったリスクを完全に防げる
-2. **生産性の爆発的向上**：AIの完全自律実行モードを解放することで生産性が爆発的に向上する
+2. **生産性の爆発的向上**：AIの完全自律実行モードを安全に使える
 
-**それでは、それぞれのメリットについて見ていきましょう。**
-
-## サンドボックス環境のメリット1：セキュリティリスクの回避
-
-AI駆動開発には、大きく分けて2つのセキュリティリスクがあります：
-
-1. **情報漏洩**：AIプロバイダーへの機密情報・個人情報の送信
-2. **コード/データ破壊**：AIが生成した破壊的なコードの実行（`rm -rf /`、`DROP DATABASE`等）
-
-サンドボックス環境を使えば、これらのリスクを完全に回避できます。
-
-### サンドボックス環境とは
+## サンドボックス環境とは
 
 **サンドボックス環境＝本番環境から完全に隔離された環境**
+
+ローカル開発環境として作成するDocker環境は、サンドボックス環境の代表格です。
 
 具体的には：
 - 壊れても問題のない環境（Dockerコンテナ等）
@@ -30,6 +21,17 @@ AI駆動開発には、大きく分けて2つのセキュリティリスクが�
   - 例：メールアドレスを `test@example.com` に置換
   - 例：決済情報テーブルを除外
   - 例：APIキーをダミー値に置換
+
+**それでは、サンドボックス環境の2つのメリットについて見ていきましょう。**
+
+## メリット1：セキュリティリスクの回避
+
+AI駆動開発には、大きく分けて2つのセキュリティリスクがあります：
+
+1. **情報漏洩**：AIプロバイダーへの機密情報・個人情報の送信
+2. **コード/データ破壊**：AIが生成した破壊的なコードの実行（`rm -rf /`、`DROP DATABASE`等）
+
+サンドボックス環境を使えば、これらのリスクを完全に回避できます。
 
 ### リスク1：情報漏洩を防ぐ
 
@@ -72,6 +74,8 @@ AI: 「rm -rf /tmp/old_files を実行してもよろしいですか？」
 
 この確認作業は安全ですが、毎回確認を求められるため自律性が低く、**生産性が低い**です。
 
+それを解消するのが「完全自立実行モード」です
+
 ### 完全自律実行モードとは
 
 Claude Codeのような自律性の高いAIには、**完全自律実行モード**があります：
@@ -105,130 +109,6 @@ rm -rf /
 
 **これが、サンドボックス環境でAIを動かすことを強く強くお勧めする理由です。**
 
-## Dockerによるサンドボックス環境
-
-### Dockerとは
-
-- コンテナ型の仮想化技術
-- ホストOSから隔離された環境
-- 軽量で高速
-- 簡単に作成・削除可能
-
-### 基本的なサンドボックス構成
-
-```
-ホストOS（本番環境）
-    ↓ 完全に隔離
-Dockerコンテナ（サンドボックス）
-    ↓ この中でAIを使用
-    → 破壊されても本番環境に影響なし
-```
-
-## 実践：サンドボックス環境を構築しよう
-
-### ステップ1：Dockerのインストール
-
-```bash
-# macOS
-brew install --cask docker
-
-# Ubuntu
-sudo apt-get update
-sudo apt-get install docker.io docker-compose
-
-# Windows
-# Docker Desktopをインストール
-```
-
-### ステップ2：サンドボックス用のDockerfile作成
-
-```dockerfile
-# Dockerfile
-FROM ubuntu:22.04
-
-# 基本的なツールをインストール
-RUN apt-get update && apt-get install -y \
-    curl \
-    git \
-    nodejs \
-    npm \
-    python3 \
-    python3-pip \
-    mysql-client \
-    && rm -rf /var/lib/apt/lists/*
-
-# 作業ディレクトリ
-WORKDIR /workspace
-
-# 非rootユーザーで実行（セキュリティ向上）
-RUN useradd -m -s /bin/bash developer
-USER developer
-
-# デフォルトコマンド
-CMD ["/bin/bash"]
-```
-
-### ステップ3：docker-compose.ymlの作成
-
-```yaml
-# docker-compose.yml
-version: '3.8'
-
-services:
-  sandbox:
-    build: .
-    container_name: ai-sandbox
-    volumes:
-      - ./workspace:/workspace  # ホストとファイル共有
-    # リソース制限（重要！）
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'      # CPU使用量を制限
-          memory: 2G       # メモリ使用量を制限
-    # セキュリティ設定
-    security_opt:
-      - no-new-privileges:true  # 特権昇格を防止
-    read_only: true  # ファイルシステムを読み取り専用に
-    tmpfs:
-      - /tmp  # 一時ファイル用
-      - /workspace/.cache  # キャッシュ用
-
-  # 本番バグ調査用のサンドボックスDB
-  sandbox-db:
-    image: mysql:8.0
-    container_name: sandbox-db
-    environment:
-      MYSQL_ROOT_PASSWORD: sandbox-password
-      MYSQL_DATABASE: sandbox
-    volumes:
-      - sandbox-db-data:/var/lib/mysql
-    # 外部からのアクセスを遮断（sandboxコンテナからのみアクセス可）
-    networks:
-      - sandbox-network
-
-networks:
-  sandbox-network:
-    driver: bridge
-    internal: true  # インターネットアクセスを完全に遮断
-
-volumes:
-  sandbox-db-data:
-```
-
-### ステップ4：サンドボックスの起動
-
-```bash
-# サンドボックスを起動
-docker-compose up -d
-
-# サンドボックスに入る
-docker-compose exec sandbox bash
-
-# 確認
-pwd  # /workspace
-whoami  # developer（非rootユーザー）
-```
 
 ## 本番バグ調査時のセキュリティ原則
 
