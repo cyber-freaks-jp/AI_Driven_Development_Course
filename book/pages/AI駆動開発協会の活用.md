@@ -4,11 +4,11 @@ AI駆動開発のスキルを身につけ、エンジニアとしてキャリア
 
 ## AI駆動開発協会とは
 
-AI駆動開発協会（https://aidd.jp）では、検定、研修プログラム、教育コンテンツなどを提供しています
+AI駆動開発協会 ([https://aidd.jp](https://aidd.jp) )では、検定、研修プログラム、教育コンテンツなどを提供しています
 
 ### AI駆動開発エンジニア検定
 
-AI駆動開発協会が実施している認定検定（https://aidd.jp/certification/）は、AI駆動開発エンジニアとしての知識とスキルを客観的に証明できる資格です。
+AI駆動開発協会が実施している認定検定（[https://aidd.jp/certification/](https://aidd.jp/certification/)）は、AI駆動開発エンジニアとしての知識とスキルを客観的に証明できる資格です。
 
 この検定は、本書で学んだ内容を中心に出題されます。
 あなたの理解度チェックとして、検定にチャレンジしてみましょう
@@ -18,7 +18,7 @@ AI駆動開発協会が実施している認定検定（https://aidd.jp/certific
 
 AI駆動開発協会は、法人向けの研修プログラムも提供しています。
 
-法人向け研修（https://aidd.jp/training/corporate/aidd/lp/）では、助成金を活用できるため、コストを抑えながら組織全体のスキルアップが可能です。
+法人向け研修（[https://aidd.jp/training/corporate/aidd/lp/](https://aidd.jp/training/corporate/aidd/lp/)）では、助成金を活用できるため、コストを抑えながら組織全体のスキルアップが可能です。
 
 ### 研修プログラムの内容
 
@@ -63,8 +63,8 @@ AI駆動開発協会は、YouTubeでも豊富な教育コンテンツを公開�
 
 **せお丸@AI駆動開発協会**
 
-https://www.youtube.com/@seomaru
+[https://www.youtube.com/@seomaru](https://www.youtube.com/@seomaru)
 
 **プログラミングチュートリアル**
 
-https://www.youtube.com/@programming_tutorial_youtube
+[https://www.youtube.com/@programming_tutorial_youtube](https://www.youtube.com/@programming_tutorial_youtube)
