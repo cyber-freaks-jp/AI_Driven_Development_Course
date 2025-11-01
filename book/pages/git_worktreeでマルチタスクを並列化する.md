@@ -34,19 +34,51 @@ Claude Codeの完全自動実行モードを使うと、人間が関与しなく
 
 git worktreeは、**同時に複数のワーキングディレクトリ(作業スペース)を作成できる機能**です。
 
+**従来の`git checkout`の場合：** 1つのフォルダ(=ワーキングディレクトリ)で作業。git checkoutコマンドでブランチを切り替える
+
 ```mermaid
 graph TB
-    subgraph git worktree
-        A[.gitディレクトリ<br/>メイン] --> B[ワーキングディレクトリ1<br/>mainブランチ]
-        A --> C[ワーキングディレクトリ2<br/>feature/issue1]
-        A --> D[ワーキングディレクトリ3<br/>feature/issue2]
-        A --> E[ワーキングディレクトリ4<br/>feature/issue3]
-    end
+    A1[.gitディレクトリ] --> B1[ワーキングディレクトリ]
+    B1 -.切り替え.-> C1[mainブランチ]
+    B1 -.切り替え.-> D1[feature/issue1]
+    B1 -.切り替え.-> E1[feature/issue2]
+
+    style B1 fill:#ffcccc
+    style C1 fill:#e0e0e0
+    style D1 fill:#e0e0e0
+    style E1 fill:#e0e0e0
 ```
 
-git worktreeを使うと、1つの`.git`ディレクトリを複数のワーキングディレクトリで共有できます。
+**`git worktree`の場合：** gitディレクトリ配下に、子フォルダ(=ワーキングディレクトリ)が複数作成される。git checkoutではなく、フォルダ移動することで作業場所を切り替える
 
-### 仕組みの説明
+```mermaid
+graph TB
+    A2[.gitディレクトリ<br/>メイン] --> B2[ワーキングディレクトリ1<br/>mainブランチ]
+    A2 --> C2[ワーキングディレクトリ2<br/>feature/issue1]
+    A2 --> D2[ワーキングディレクトリ3<br/>feature/issue2]
+    A2 --> E2[ワーキングディレクトリ4<br/>feature/issue3]
+
+    style B2 fill:#ccffcc
+    style C2 fill:#ccffcc
+    style D2 fill:#ccffcc
+    style E2 fill:#ccffcc
+```
+
+### git checkoutとの違い
+
+多くの方が「ブランチを切り替えるなら`git checkout`があるじゃないか」と疑問に思うかもしれません。しかし、`git checkout`は同時に1つのブランチしか扱えません
+
+一方、git worktreeコマンドを使うと、いつものgitディレクトリ配下に、1ブランチにつき、1つの子フォルダ(=ワーキングディレクトリ)が作成されます。git checkoutコマンドではなく、フォルダ移動することで作業場所を切り替えます
+
+**`git worktree`の場合：**
+
+```bash
+# Issue 1用のディレクトリ
+git worktree add ../myproject-issue1 feature/issue1
+
+# Issue 2用のディレクトリ
+git worktree add ../myproject-issue2 feature/issue2
+```
 
 git worktreeは、以下のような構造を作ります。
 
