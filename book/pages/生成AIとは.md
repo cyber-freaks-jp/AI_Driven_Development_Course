@@ -25,8 +25,8 @@ graph TD
     B --> E[スパム判定<br/>画像認識<br/>予測]
     D --> F[文章生成<br/>画像生成<br/>コード生成]
 
-    style C fill:#90EE90
-    style D fill:#90EE90
+    style C fill:#FFF4E6
+    style D fill:#FFF4E6
 ```
 
 ## 生成AIの種類
