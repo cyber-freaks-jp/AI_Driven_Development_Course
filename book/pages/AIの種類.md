@@ -21,8 +21,8 @@ graph TD
     style AI fill:#e1f5ff
     style ML fill:#b3e5ff
     style DL fill:#80d4ff
-    style GenAI fill:#4dc3ff
-    style LLM fill:#1aa3ff
+    style GenAI fill:#00838F,color:#FFFFFF,stroke:#006064
+    style LLM fill:#00838F,color:#FFFFFF,stroke:#006064
 ```
 
 この図が示すように、各技術は階層構造になっています。つまり、外側の技術が内側の技術を含む関係です。

@@ -36,6 +36,6 @@ graph TD
     C --> C1[Stable Diffusion<br/>Midjourney]
     D --> D1[音声合成AI<br/>音楽生成AI]
 
-    style B fill:#1aa3ff
-    style B1 fill:#1aa3ff
+    style B fill:#00838F,color:#FFFFFF,stroke:#006064
+    style B1 fill:#00838F,color:#FFFFFF,stroke:#006064
 ```
