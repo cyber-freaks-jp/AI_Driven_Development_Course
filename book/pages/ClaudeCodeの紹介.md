@@ -12,7 +12,7 @@ Claude Codeは、**ターミナル上で動作する完全自律型のAI開発�
 
 ### CursorとClaude Codeの違い
 
-**Cursor：エディタ統合型**
+**Cursor：IDE統合型**
 - GUIで操作
 - エディタ内でAIと対話
 - 初心者でも使いやすい
