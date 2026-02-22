@@ -21,11 +21,11 @@ graph TD
         end
     end
 
-    style AI fill:#e1f5ff
-    style ML fill:#b3e5ff
-    style DL fill:#80d4ff
-    style GenAI fill:#00838F,color:#FFFFFF,stroke:#006064
-    style LLM fill:#00838F,color:#FFFFFF,stroke:#006064
+    style AI fill:#e3f2fd,color:#0d47a1,stroke:#1976d2
+    style ML fill:#bbdefb,color:#0d47a1,stroke:#1976d2
+    style DL fill:#64b5f6,color:#0d47a1,stroke:#1976d2
+    style GenAI fill:#1565c0,color:#ffffff,stroke:#0d47a1
+    style LLM fill:#0d47a1,color:#ffffff,stroke:#0d47a1
 ```
 
 
@@ -52,9 +52,9 @@ graph TD
 
 ## 「技術」と「モデル」の違い
 
-機械学習、ディープラーニング、LLMなどの各技術は、AIの学習方法です。
+機械学習、ディープラーニング、生成AIなどの各技術は、AIを実現するための技術です。
 
-一方、**モデル**は学習した結果完成したAIです（GPT-4、Claude 3.5 Sonnetなど）。
+一方**モデル**は、そうした技術を使って学習した結果、完成したAIです（GPT-4o、Claude 3.5 SonnetなどのLLM）。
 
 ChatGPTは、OpenAI社が提供している**AIサービス名**で、その中で動いているGPT-4が**モデル**です。モデルによって性能、速度、コストが違います。
 

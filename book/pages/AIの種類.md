@@ -18,11 +18,11 @@ graph TD
         end
     end
 
-    style AI fill:#e1f5ff
-    style ML fill:#b3e5ff
-    style DL fill:#80d4ff
-    style GenAI fill:#00838F,color:#FFFFFF,stroke:#006064
-    style LLM fill:#00838F,color:#FFFFFF,stroke:#006064
+    style AI fill:#e3f2fd,color:#0d47a1,stroke:#1976d2
+    style ML fill:#bbdefb,color:#0d47a1,stroke:#1976d2
+    style DL fill:#64b5f6,color:#0d47a1,stroke:#1976d2
+    style GenAI fill:#1565c0,color:#ffffff,stroke:#0d47a1
+    style LLM fill:#0d47a1,color:#ffffff,stroke:#0d47a1
 ```
 
 この図が示すように、各技術は階層構造になっています。つまり、外側の技術が内側の技術を含む関係です。
