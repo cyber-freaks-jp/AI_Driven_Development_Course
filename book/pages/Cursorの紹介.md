@@ -8,7 +8,7 @@ AI駆動開発で最も人気のあるエディタ、Cursorを紹介します。
 
 つまり、VS Codeと全く同じ操作感で使うことができます。
 
-![images/cursor.png]
+![Cursorの画面](images/cursor.png)
 
 ## Cursorがおすすめな理由
 

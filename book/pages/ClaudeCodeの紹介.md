@@ -8,7 +8,7 @@
 
 Claude Codeは、**ターミナル上で動作する完全自律型のAI開発ツール**です。
 
-![images/claude.png]
+![Claude Codeの画面](images/claude.png)
 
 ### CursorとClaude Codeの違い
 

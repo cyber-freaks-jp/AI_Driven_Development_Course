@@ -17,17 +17,7 @@
 - 楽曲を生成する
 - プログラムコードを生成する
 
-```mermaid
-graph TD
-    A[従来のAI] --> B[分類・予測]
-    C[生成AI] --> D[コンテンツ生成]
-
-    B --> E[スパム判定<br/>画像認識<br/>天気予測]
-    D --> F[文章生成<br/>画像生成<br/>コード生成]
-
-    style C fill:#00838F,color:#FFFFFF,stroke:#006064
-    style D fill:#00838F,color:#FFFFFF,stroke:#006064
-```
+![生成AIとは 図1](images/generative-ai_1.png)
 
 ## 生成AIの種類
 

@@ -8,26 +8,7 @@
 
 外側の技術が内側の技術を含む、入れ子構造になっています。
 
-
-```mermaid
-graph TD
-    subgraph AI["AI (人工知能)"]
-        subgraph ML["機械学習"]
-            subgraph DL["ディープラーニング"]
-                subgraph GenAI["生成AI"]
-                    LLM["LLM<br/>(大規模言語モデル)"]
-                end
-            end
-        end
-    end
-
-    style AI fill:#e3f2fd,color:#0d47a1,stroke:#1976d2
-    style ML fill:#bbdefb,color:#0d47a1,stroke:#1976d2
-    style DL fill:#64b5f6,color:#0d47a1,stroke:#1976d2
-    style GenAI fill:#1565c0,color:#ffffff,stroke:#0d47a1
-    style LLM fill:#0d47a1,color:#ffffff,stroke:#0d47a1
-```
-
+![AI技術のまとめ 図1](images/ai-tech-summary_1.png)
 
 ## 各技術の役割
 
