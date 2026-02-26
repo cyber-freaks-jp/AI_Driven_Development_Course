@@ -8,26 +8,7 @@
 
 外側の技術が内側の技術を含む、入れ子構造になっています。
 
-
-```mermaid
-graph TD
-    subgraph AI["AI (人工知能)"]
-        subgraph ML["機械学習"]
-            subgraph DL["ディープラーニング"]
-                subgraph GenAI["生成AI"]
-                    LLM["LLM<br/>(大規模言語モデル)"]
-                end
-            end
-        end
-    end
-
-    style AI fill:#e1f5ff
-    style ML fill:#b3e5ff
-    style DL fill:#80d4ff
-    style GenAI fill:#00838F,color:#FFFFFF,stroke:#006064
-    style LLM fill:#00838F,color:#FFFFFF,stroke:#006064
-```
-
+![AI技術のまとめ 図1](images/ai-tech-summary_1.png)
 
 ## 各技術の役割
 
@@ -52,9 +33,9 @@ graph TD
 
 ## 「技術」と「モデル」の違い
 
-機械学習、ディープラーニング、LLMなどの各技術は、AIの学習方法です。
+機械学習、ディープラーニング、生成AIなどの各技術は、AIを実現するための技術です。
 
-一方、**モデル**は学習した結果完成したAIです（GPT-4、Claude 3.5 Sonnetなど）。
+一方**モデル**は、そうした技術を使って学習した結果、完成したAIです（GPT-4o、Claude 3.5 SonnetなどのLLM）。
 
 ChatGPTは、OpenAI社が提供している**AIサービス名**で、その中で動いているGPT-4が**モデル**です。モデルによって性能、速度、コストが違います。
 
