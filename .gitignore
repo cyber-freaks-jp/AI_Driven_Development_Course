@@ -53,3 +53,5 @@ ENV/
 *.tmp
 *.temp
 .cache/ 
+
+book/output/ai-driven-development-guide.epub
