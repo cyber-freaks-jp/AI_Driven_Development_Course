@@ -29,7 +29,6 @@ AIは疲れることなく、常に同じ基準でコードをレビューしま
 コードの実行なしに、構文やパターンの分析によって問題を検出します。
 
 **特徴:**
-
 - 高速な処理
 - セキュリティ脆弱性の検出
 - コーディング規約違反の指摘
@@ -42,7 +41,6 @@ AIは疲れることなく、常に同じ基準でコードをレビューしま
 コードとコメント、コミットメッセージなどを自然言語として理解し、より高度な分析を行います。
 
 **特徴:**
-
 - コードの意図理解
 - ドキュメントとコードの整合性チェック
 - より文脈に沿った提案
@@ -54,7 +52,6 @@ AIは疲れることなく、常に同じ基準でコードをレビューしま
 チームの過去のコードやレビュー履歴から学習し、プロジェクト固有の基準でレビューを行います。
 
 **特徴:**
-
 - チーム固有のコーディングスタイルに適応
 - 過去の問題パターンに基づく予測
 - プロジェクト特有の問題検出
@@ -107,61 +104,15 @@ AIコードレビューの効果を測定し、継続的に改善します。
 
 ### セキュリティ脆弱性のレビュー
 
-```python
-# AIが検出する脆弱なコード例
-def authenticate(username, password):
-    query = "SELECT * FROM users WHERE username='{}' AND password='{}'".format(username, password)
-    # SQLインジェクションの脆弱性あり
-
-# AIの提案する改善例
-def authenticate_safe(username, password):
-    query = "SELECT * FROM users WHERE username=%s AND password=%s"
-    cursor.execute(query, (username, password))
-    # パラメータ化クエリでSQLインジェクション対策
-```
+![AIを活用したコードレビュー コード1](images/AIを活用したコードレビュー_code_1.png)
 
 ### パフォーマンス問題の検出
 
-```javascript
-// AIが検出する非効率なコード
-function findUser(users, id) {
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].id === id) return users[i];
-  }
-  return null;
-}
-
-// AIの提案する改善例
-function findUserOptimized(users, id) {
-  return users.find((user) => user.id === id) || null;
-  // Array.findメソッドを使用した効率的な実装
-}
-```
+![AIを活用したコードレビュー コード2](images/AIを活用したコードレビュー_code_2.png)
 
 ### コードの可読性向上
 
-```java
-// AIが検出する読みにくいコード
-public List<Integer> p(List<Integer> l, int t) {
-  List<Integer> r = new ArrayList<>();
-  for (int i = 0; i < l.size(); i++) {
-    if (l.get(i) > t) r.add(l.get(i));
-  }
-  return r;
-}
-
-// AIの提案する改善例
-public List<Integer> filterValuesGreaterThan(List<Integer> values, int threshold) {
-  List<Integer> results = new ArrayList<>();
-  for (int value : values) {
-    if (value > threshold) {
-      results.add(value);
-    }
-  }
-  return results;
-}
-// 適切な命名と構造化で可読性向上
-```
+![AIを活用したコードレビュー コード3](images/AIを活用したコードレビュー_code_3.png)
 
 ## 人間と AIの適切な役割分担
 
@@ -192,7 +143,6 @@ AIコードレビューは人間のレビュアーに取って代わるもので
 AIは文脈を完全に理解できないため、問題ではない箇所を問題と判断することがあります。
 
 **解決策:**
-
 - AIツールのカスタマイズと調整
 - 誤検出のフィードバックメカニズムの確立
 - 重要度のフィルタリング
@@ -202,7 +152,6 @@ AIは文脈を完全に理解できないため、問題ではない箇所を問
 AIは新しい種類の問題や複雑な文脈依存の問題を見逃すことがあります。
 
 **解決策:**
-
 - 人間のレビューとの組み合わせ
 - AIツールの定期的な更新
 - 複数の AIツールの併用
@@ -212,7 +161,6 @@ AIは新しい種類の問題や複雑な文脈依存の問題を見逃すこと
 AIレビューに対するチームの抵抗感があることもあります。
 
 **解決策:**
-
 - 段階的な導入
 - 成功事例の共有
 - AIの役割と限界の明確化
