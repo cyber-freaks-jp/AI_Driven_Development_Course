@@ -1,0 +1,15 @@
+flowchart TB
+    subgraph ハーネス["ハーネス = OS"]
+        direction TB
+        subgraph エージェント["エージェント = アプリケーション"]
+            direction TB
+            subgraph コンテキストウィンドウ["コンテキストウィンドウ = RAM"]
+                モデル["モデル = CPU"]
+            end
+        end
+    end
+
+    style ハーネス fill:#f5e6f5,stroke:#8b008b,stroke-width:3px,color:#333
+    style エージェント fill:#e6d0e6,stroke:#8b008b,stroke-width:2px,color:#333
+    style コンテキストウィンドウ fill:#d4b8d4,stroke:#8b008b,stroke-width:2px,color:#333
+    style モデル fill:#8b008b,stroke:#800000,stroke-width:2px,color:#fff

@@ -1,0 +1,14 @@
+flowchart TD
+    A["レベル1：ルールを明文化する"] --> B["レベル2：制約と検証を仕組みに埋め込む"]
+    B --> C["レベル3：観測し、継続的に改善する"]
+
+    A1["CLAUDE.md / AGENTS.md"] -.-> A
+    B1["リンター・テスト・フック"] -.-> B
+    C1["ログ・指標・ダッシュボード"] -.-> C
+
+    style A fill:#f0e6f0,stroke:#8b008b,stroke-width:2px,color:#333
+    style B fill:#d4b8d4,stroke:#8b008b,stroke-width:2px,color:#333
+    style C fill:#8b008b,stroke:#800000,stroke-width:3px,color:#fff
+    style A1 fill:#f9f9f9,stroke:#ccc,color:#666
+    style B1 fill:#f9f9f9,stroke:#ccc,color:#666
+    style C1 fill:#f9f9f9,stroke:#ccc,color:#666

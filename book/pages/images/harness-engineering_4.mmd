@@ -1,0 +1,14 @@
+flowchart TD
+    A[AIが実装する] --> B[テスト・リンターを実行する]
+    B --> C{合格？}
+    C -- 不合格 --> D[失敗理由をAIに返す]
+    D --> E[AIが修正する]
+    E --> B
+    C -- 合格 --> F[完了]
+
+    style A fill:#8b008b,stroke:#800000,stroke-width:2px,color:#fff
+    style B fill:#f0e6f0,stroke:#8b008b,stroke-width:2px,color:#333
+    style C fill:#800000,stroke:#800000,stroke-width:2px,color:#fff
+    style D fill:#f0e6f0,stroke:#8b008b,stroke-width:2px,color:#333
+    style E fill:#8b008b,stroke:#800000,stroke-width:2px,color:#fff
+    style F fill:#006400,stroke:#006400,stroke-width:2px,color:#fff
